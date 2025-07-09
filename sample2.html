@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IPO Template - Reusable</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f3e6;
+      margin: 0;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #capture-area {
+      background: #fff8f2;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      padding: 15px;
+      max-width: 450px;
+      margin: auto;
+    }
+
+    .heading {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #2c2c2c;
+      margin-bottom: 10px;
+    }
+
+    .company-box {
+      background: #f4d1d1;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .company-box img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+    }
+
+    .company-box h2 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #222;
+    }
+
+    .card-container {
+      margin-top: 20px;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      background: #ffffff;
+    }
+
+    .card-top {
+      background-color: #ff8a8a;
+      padding: 10px;
+    }
+
+    .card-bottom {
+      background-color: #d1e6d1;
+      padding: 10px;
+    }
+
+    .card img {
+      width: 50px;
+    }
+
+    .card p, .card h3 {
+      margin: 0;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-weight: bold;
+      background: #1a1a1a;
+      color: white;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .download-btn {
+      margin-top: 20px;
+      padding: 10px 18px;
+      font-size: 1rem;
+      border: none;
+      background-color: #333;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    [contenteditable="true"]:focus {
+      outline: 2px dashed #666;
+      background: #fffceb;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="capture-area">
+
+    <div class="heading" contenteditable="true">MAINBOARD IPO LISTING</div>
+
+    <div class="company-box">
+      <img src="logo.jpg" alt="Company Logo">
+      <h2 contenteditable="true">{{COMPANY_NAME}}</h2>
+    </div>
+
+    <div class="card-container">
+
+      <div class="card">
+        <div class="card-top">
+          <img src="offer_price.jpg" alt="Offer Price">
+        </div>
+        <div class="card-bottom">
+          <p contenteditable="true">OFFER PRICE</p>
+          <h3 contenteditable="true">₹ {{OFFER_PRICE}}</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <img src="listing_price.jpg" alt="Listing Price">
+        </div>
+        <div class="card-bottom">
+          <p contenteditable="true">LISTING PRICE</p>
+          <h3 contenteditable="true">₹ {{LISTING_PRICE}}</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <img src="investment.jpg" alt="Investment">
+        </div>
+        <div class="card-bottom">
+          <p contenteditable="true">INVESTMENT PER LOT</p>
+          <h3 contenteditable="true">₹ {{INVESTMENT}}</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <img src="profit.jpg" alt="Profit">
+        </div>
+        <div class="card-bottom">
+          <p contenteditable="true">PROFIT PER LOT</p>
+          <h3 contenteditable="true">₹ {{PROFIT}}</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer" contenteditable="true">
+      📺 Subscribe for More Updates | IPOInvestor ಕನ್ನಡಿಗ
+    </div>
+
+  </div>
+
+  <button class="download-btn" onclick="downloadAsImage()">Download Image</button>
+
+  <script>
+    function downloadAsImage() {
+      html2canvas(document.querySelector("#capture-area")).then(canvas => {
+        let link = document.createElement('a');
+        link.download = 'ipo_poster.png';
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    }
+  </script>
+
+</body>
+</html>

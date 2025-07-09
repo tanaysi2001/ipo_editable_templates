@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IPO Template - Royal Purple</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ede7f6, #e3f2fd);
+      margin: 0;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #capture-area {
+      background: white;
+      border-radius: 16px;
+      padding: 15px;
+      max-width: 480px;
+      margin: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .heading {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      background: linear-gradient(to right, #8e24aa, #3949ab);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .company-box {
+      background: #f3e5f5;
+      border: 2px dashed #7b1fa2;
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 3px 12px rgba(155, 89, 182, 0.2);
+    }
+
+    .company-box img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+    }
+
+    .company-box h2 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .card-container {
+      margin-top: 20px;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(123, 31, 162, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(123, 31, 162, 0.25);
+    }
+
+    .card-top {
+      background: linear-gradient(to right, #9575cd, #7986cb);
+      padding: 12px;
+    }
+
+    .card-bottom {
+      background-color: #ede7f6;
+      padding: 10px;
+    }
+
+    .card img {
+      width: 45px;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .card h3 {
+      margin: 4px 0 0;
+      font-size: 1.1rem;
+      color: #111;
+    }
+
+    .footer {
+      margin-top: 20px;
+      background: #4527a0;
+      color: #fff;
+      font-size: 0.95rem;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .download-btn {
+      margin-top: 18px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: #7e57c2;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(126, 87, 194, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(126, 87, 194, 0.4);
+    }
+
+    [contenteditable="true"]:focus {
+      outline: 2px dashed #666;
+      background: #f3e5f5;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="capture-area">
+    <div class="heading" contenteditable="true">MAINBOARD IPO LISTING</div>
+
+    <div class="company-box">
+      <img src="logo.jpg" alt="Logo">
+      <h2 contenteditable="true">{{COMPANY_NAME}}</h2>
+    </div>
+
+    <div class="card-container">
+      <div class="card">
+        <div class="card-top"><img src="offer_price.jpg" alt="Offer Price"></div>
+        <div class="card-bottom">
+          <p contenteditable="true">OFFER PRICE</p>
+          <h3 contenteditable="true">₹ {{OFFER_PRICE}}</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="listing_price.jpg" alt="Listing Price"></div>
+        <div class="card-bottom">
+          <p contenteditable="true">LISTING PRICE</p>
+          <h3 contenteditable="true">₹ {{LISTING_PRICE}}</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="investment.jpg" alt="Investment"></div>
+        <div class="card-bottom">
+          <p contenteditable="true">INVESTMENT PER LOT</p>
+          <h3 contenteditable="true">₹ {{INVESTMENT}}</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="profit.jpg" alt="Profit"></div>
+        <div class="card-bottom">
+          <p contenteditable="true">PROFIT PER LOT</p>
+          <h3 contenteditable="true">₹ {{PROFIT}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" contenteditable="true">📺 Subscribe for More Updates | IPOInvestor ಕನ್ನಡಿಗ</div>
+  </div>
+
+  <button class="download-btn" onclick="downloadAsImage()">⬇️ Download as Image</button>
+
+  <script>
+    function downloadAsImage() {
+      const capture = document.getElementById('capture-area');
+      html2canvas(capture, { scale: 2, useCORS: true }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'ipo_poster_royal.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+  </script>
+
+</body>
+</html>
